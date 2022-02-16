@@ -15,9 +15,18 @@ const Comment = (props) => {
                 setLoading(true)
             })
     }, [props.idPost]);
-    const DeletePostHandle = (index) => {
-        dataComments.splice(index, 1);
-        setdataComments(prevData => [...prevData])
+    const DeletePostHandle = async(index, id, email) => {
+        
+        var ConfirmCheck = window.confirm(`Delete Comment ID: ${id} and EMAIL: ${email} ?`)
+        if (ConfirmCheck){
+            dataComments.splice(index, 1);
+            setdataComments(prevData => [...prevData])
+            alert(`Comment ${id} deleted`)
+            
+            await fetch('https://jsonplaceholder.typicode.com/comments/' + id, {
+                method: 'DELETE',
+            }); 
+        }
     }
     if (loading) {
         return (
@@ -33,7 +42,7 @@ const Comment = (props) => {
                                     <div>
                                         <button
                                             onClick={() => {
-                                                DeletePostHandle(index)
+                                                DeletePostHandle(index, item.id , item.email)
                                             }}>
                                             Delete Comment
                                         </button>

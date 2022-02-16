@@ -24,7 +24,7 @@ const Manager = () => {
         setCurrentPage(currentPage => Number.parseInt(currentPage) - 1);
     }
     const InputPage = (number) => {
-        if (!number || number < 0 || number > dataSize) {
+        if (number < 0 || number > dataSize) {
             setCurrentPage(1);
             alert('Page Error !')
         }
@@ -32,16 +32,19 @@ const Manager = () => {
             setCurrentPage(number);
         }
     }
-    
+
     return (
         <BrowserRouter>
             <div>
-                <div className='pagination'>
-                    <button disabled={(currentPage <= 1) ? true : false} onClick={DecreasePage}>PREV</button>
-                    <div>
-                        <input type='number' value={currentPage} onChange={(number) => { InputPage(number.target.value) }}></input>
+                <div>
+                    <div>Post number</div>
+                    <div className='pagination'>
+                        <button disabled={(currentPage <= 1) ? true : false} onClick={DecreasePage}>PREV</button>
+                        <div>
+                            <input type='number' value={currentPage} onChange={(number) => { InputPage(number.target.value) }}></input>
+                        </div>
+                        <button disabled={currentPage >= dataSize ? true : false} onClick={IncreasePage}>NEXT</button>
                     </div>
-                    <button disabled={currentPage >= dataSize ? true : false} onClick={IncreasePage}>NEXT</button>
                 </div>
             </div>
             <Routes>

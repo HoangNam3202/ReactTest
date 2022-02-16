@@ -17,7 +17,7 @@ const AddPost = (props) => {
             .then((response) => response.json())
             .then((json) => {
                 console.log(json);
-                alert(`post ${json.title} đã được thêm` )
+                alert(`Post ${json.title} add` )
             });
     }
     return (

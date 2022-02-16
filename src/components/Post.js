@@ -20,6 +20,7 @@ const Post = (props) => {
         await fetch('https://jsonplaceholder.typicode.com/posts/' + dataPosts.id, {
             method: 'DELETE',
         });
+        alert(`Post ID : ${dataPosts.id} deleted`)
         
     }
     if (loading) {
