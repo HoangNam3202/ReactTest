@@ -18,10 +18,10 @@ const Manager = () => {
     }, []);
 
     const IncreasePage = () => {
-        setCurrentPage(currentPage => (currentPage + 1));
+        setCurrentPage(currentPage => Number.parseInt(currentPage) + 1);
     }
     const DecreasePage = () => {
-        setCurrentPage(currentPage => (currentPage - 1));
+        setCurrentPage(currentPage => Number.parseInt(currentPage) - 1);
     }
     return (
         <BrowserRouter>
