@@ -13,7 +13,7 @@ const Manager = () => {
         await fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
             .then(json => {
-                dataSize(json.length);
+                setdataSize(json.length);
             })
     }, []);
 
@@ -23,15 +23,24 @@ const Manager = () => {
     const DecreasePage = () => {
         setCurrentPage(currentPage => Number.parseInt(currentPage) - 1);
     }
+    const InputPage = (number) => {
+        if (!number || number < 0 || number > dataSize) {
+            setCurrentPage(1);
+            alert('Page Error !')
+        }
+        else {
+            setCurrentPage(number);
+        }
+    }
     return (
         <BrowserRouter>
             <div>
                 <div className='pagination'>
                     <button disabled={(currentPage <= 1) ? true : false} onClick={DecreasePage}>PREV</button>
                     <div>
-                        <input type='number' value={currentPage} onChange={(number)=>{setCurrentPage(number.target.value)}}></input>
+                        <input type='number' value={currentPage} onChange={(number) => { InputPage(number.target.value) }}></input>
                     </div>
-                    <button disabled={currentPage > dataSize ? true : false} onClick={IncreasePage}>NEXT</button>
+                    <button disabled={currentPage >= dataSize ? true : false} onClick={IncreasePage}>NEXT</button>
                 </div>
             </div>
             <Routes>
