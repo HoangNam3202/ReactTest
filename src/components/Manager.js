@@ -32,6 +32,7 @@ const Manager = () => {
             setCurrentPage(number);
         }
     }
+    
     return (
         <BrowserRouter>
             <div>

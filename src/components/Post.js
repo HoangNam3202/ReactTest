@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Comment from './Comment';
 import '../css/Post.css'
+import AddPost from './AddPost';
 
 const Post = (props) => {
     const [loading, setLoading] = useState(false);
@@ -15,13 +16,23 @@ const Post = (props) => {
             })
     }, [props.currentPage]);
 
+    const DeletePostHandle = async() => {
+        await fetch('https://jsonplaceholder.typicode.com/posts/' + dataPosts.id, {
+            method: 'DELETE',
+        });
+        
+    }
     if (loading) {
         return (
             <div>
+                <AddPost ></AddPost>
                 <div className='Post_par'>
                     <div>
                         <div>title : {dataPosts.title}</div>
                         <div>body : {dataPosts.body}</div>
+                    </div>
+                    <div>
+                        <button onClick={DeletePostHandle}>Delete Post</button>
                     </div>
                 </div>
                 <div className='comment_type'>Comments v</div>
