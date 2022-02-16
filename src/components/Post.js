@@ -36,7 +36,7 @@ const Post = (props) => {
                     </div>
                 </div>
                 <div className='comment_type'>Comments v</div>
-                <Comment currentPage={props.currentPage}></Comment>
+                <Comment idPost={dataPosts.id}></Comment>
             </div>
         );
     }

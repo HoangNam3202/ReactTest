@@ -8,13 +8,13 @@ const Comment = (props) => {
 
     const [dataComments, setdataComments] = useState([]);
     useEffect(async () => {
-        await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + props.currentPage)
+        await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + props.idPost)
             .then(response => response.json())
             .then(json => {
                 setdataComments(json);
                 setLoading(true)
             })
-    }, [props.currentPage]);
+    }, [props.idPost]);
     const DeletePostHandle = (index) => {
         dataComments.splice(index, 1);
         setdataComments(prevData => [...prevData])
