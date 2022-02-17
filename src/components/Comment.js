@@ -15,18 +15,25 @@ const Comment = (props) => {
                 setLoading(true)
             })
     }, [props.idPost]);
-    const DeletePostHandle = async(index, id, email) => {
-        
+    const DeleteCommentHandle = async (index, id, email) => {
+
         var ConfirmCheck = window.confirm(`Delete Comment ID: ${id} and EMAIL: ${email} ?`)
-        if (ConfirmCheck){
+        if (ConfirmCheck) {
             dataComments.splice(index, 1);
             setdataComments(prevData => [...prevData])
-            alert(`Comment ${id} deleted`)
-            
+            // alert(`Comment ${id} deleted`)
+
             await fetch('https://jsonplaceholder.typicode.com/comments/' + id, {
                 method: 'DELETE',
-            }); 
+            });
         }
+    }
+    const UpdateCommentHandle = async(item, index) => {
+        let termArr = Object.assign([], [...dataComments]);
+        termArr[index].name = 'HoangNam'
+        termArr[index].email = 'nam@gmail.com';
+        termArr[index].body = 'test comment';
+        setdataComments(termArr);
     }
     if (loading) {
         return (
@@ -42,9 +49,18 @@ const Comment = (props) => {
                                     <div>
                                         <button
                                             onClick={() => {
-                                                DeletePostHandle(index, item.id , item.email)
+                                                DeleteCommentHandle(index, item.id, item.email)
                                             }}>
                                             Delete Comment
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button onClick={
+                                            ()=>{
+                                                UpdateCommentHandle(item, index);
+                                            }
+                                        }>
+                                            Update Post
                                         </button>
                                     </div>
                                 </div>
