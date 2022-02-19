@@ -7,3 +7,10 @@
     padding: 1vw;
     margin: .5vw;
 }
+.comment_type{
+    background-color: rgb(67, 212, 164);
+    padding: 1vw;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}

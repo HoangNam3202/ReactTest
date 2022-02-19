@@ -1,11 +1,13 @@
-.comment_type{
-    background-color: rgb(136, 184, 5);
-    padding: 1vw;
-    color: white;
-}
 .Post_par{
-    background-color: rgb(29, 104, 189);
+    background-color: rgb(33, 120, 219);
     color: white;
     padding: 1vw;
+}
+.post_type{
     margin-top: 1vw;
+    background-color: rgb(29, 104, 189);
+    padding: 1vw;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
 }
